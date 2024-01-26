@@ -1,0 +1,70 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap');
+
+@layer base {
+    #root{
+      font-family: 'Poppins';
+    }
+}
+
+@layer components{
+    .form-control{
+        outline: none;
+        padding: 5px 10px;
+        border: none;
+        border-radius: 5px;
+        @apply text-neutral-800;
+    }
+
+    .grid-card{
+        display: grid;
+        grid-template-columns: repeat(auto-fit,minmax(200px,auto));
+    }
+
+    @media screen and (max-width){
+        .grid-card{
+            grid-template-columns: 1fr;
+        }
+    }
+
+    @font-face {
+        font-family: 'bakilda';
+        src: url('./assets/font/Bakilda\ Histori.woff') format('woff');
+    }
+
+    .btn{
+        @apply outline-none bg-primary px-3 py-2 rounded flex-grow font-semibold text-white
+    }
+
+    .anim-slide{
+        animation: swing 15s ease-in-out infinite;
+    }
+    @keyframes swing {
+            0% {
+                -webkit-transform: translate(0) rotate(0deg);
+                transform: translate(0) rotate(0deg);
+            }
+            25% {
+                -webkit-transform: translate(15px, -5px) rotate(-15deg);
+                transform: translate(15px, -5px) rotate(-15deg);
+            }
+            50% {
+                -webkit-transform: translate(-10px, 10px) rotate(0deg);
+                transform: translate(-10px, 10px) rotate(0deg);
+            }
+            75% {
+                -webkit-transform: translate(5px, -5px) rotate(15deg);
+                transform: translate(5px, -5px) rotate(15deg);
+            }
+            100% {
+                -webkit-transform: translate(0) rotate(0deg);
+                transform: translate(0) rotate(0deg);
+            }
+    }
+}
+
+
+
