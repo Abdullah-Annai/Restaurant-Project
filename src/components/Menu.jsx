@@ -7,7 +7,7 @@ const Menu = ({value,animation}) => {
   const handleClick =(element,foodId)=>{
     let foodImage = element.querySelector("#food-img").src
     let foodName = element.querySelector("#food-name").innerHTML
-    let foodPrize = element.querySelector("#food-prize").innerHTML
+    let foodPrize = element.querySelector("#food-prize").innerHTML.split("$")[1]
 
     setFood({
       id: foodId,

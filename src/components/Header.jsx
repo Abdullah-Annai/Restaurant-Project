@@ -7,18 +7,60 @@ const Header = () => {
 
   const { foodItem } = useContext(FoodContext)
 
-  const [foodQty,setFoodQty] = useState(["hi"])
+  const [foodQty,setFoodQty] = useState([])
+
+  const [prize,setPrize] = useState({
+    total:0,
+    tax:0,
+    item: 0,
+    final: 0
+  })
+
+  const handleTotal = ()=>{
+    let prize = 0
+    let taxs = 0
+    let finals= 0
+    foodQty.map((val)=>{
+        prize += val.qty * val.prize
+        taxs+=Math.round(0.03*prize)
+        finals=prize+taxs+30
+        setPrize({total:prize,tax:taxs,item:foodQty.length,final:finals})
+    })
+    console.log()
+  }
+
+  useEffect(()=>{
+    handleTotal()
+  },[foodQty])
 
   const handleInc = (id)=>{
-    foodQty.map((val)=>{
-        console.log("increment")
-        return val.id === id ? {...val,qty:val.qty++} : val
-    })
+    let prize=0;
+    const updatedFoodQty = foodQty.map((val) =>{
+        if(val.id == id){
+            prize+=val.qty * val.prize
+            return {...val,qty:val.qty+=1}
+        } else{
+            prize+=val.qty * val.prize
+            return val
+        }
+        // val.id === id ?  { ...val, qty: val.qty+=1} : val
+    });
+  setFoodQty(updatedFoodQty);
+  }
+
+  const handleDec = (id)=>{
+    const decValue = foodQty.map((val)=>
+        val.id == id  && val.qty >1 ? {...val,qty:val.qty-=1} : val
+    )
+    setFoodQty(decValue)
   }
 
   useEffect(()=>{
     setFoodQty([...foodItem])
-    console.log("hit")
+    
+    foodQty.map((val)=>{
+
+    })
   },[foodItem])
 
   const menu = [
@@ -73,25 +115,47 @@ const Header = () => {
                         <span onClick={showSlide}><ion-icon name="cart-outline"></ion-icon></span>
 
                         {/* Food Cart */}
-                        <div className={`absolute bg-white/50 backdrop-blur-md z-10 border-l-2 border-primary/70 -left-9 transition-all origin-top duration-300 ${showCart == 0 ? "scale-y-0" : "scale-y-1"} top-14 h-screen w-[350px] p-5`}>
+                        <div className={`absolute bg-white/50 backdrop-blur-md z-10 border-l-2 border-primary/70 -left-9 transition-all origin-top duration-300 ${showCart == 0 ? "scale-y-0" : "scale-y-1"} top-14 min-h-screen h-auto w-[350px] p-5 pb-8`}>
                             <p className='font-serif text-center text-stone-700 font-semibold border-b-2 border-zinc-200 pb-3'>Cart</p>
                             <div className="grid lg:grid-cols-3 mt-3">
-                                {foodItem.map((val,index)=>(
+                                {foodQty.map((val)=>(
                                     <>
                                         {/* image */}
                                         <img src={val.image} alt="" />
                                         {/* Detail */}
                                         <p className='text-base'>{val.name}</p>
                                        <div className="prize flex flex-col gap-4 mb-5">
-                                            <p className='text-primary font-lg font-semibold text-center'>{val.prize}</p>
+                                            <p className='text-primary font-lg font-semibold text-center'>${val.prize}</p>
                                             <div className="flex justify-evenly items-center">
-                                                <button className='bg-primary text-white rounded-full h-6 w-6 flex justify-center items-center'>-</button>
+                                                <button onClick={()=>handleDec(val.id)} className='bg-primary text-white rounded-full h-6 w-6 flex justify-center items-center hover:font-semibold hover:border-2 hover:bg-white hover:border-primary hover:text-primary'>-</button>
                                                 <p className='text-base font-semibold'>{val.qty}</p>
-                                                <button onClick={()=>handleInc(val.id)} className='bg-primary text-white rounded-full h-6 w-6 flex justify-center items-center'>+</button>
+                                                <button onClick={()=>handleInc(val.id)} className='bg-primary text-white rounded-full h-6 w-6 flex justify-center items-center hover:font-semibold hover:border-2 hover:bg-white hover:border-primary hover:text-primary'>+</button>
                                             </div>
                                        </div>
                                     </>
                                 ))}
+                            </div>
+                            <div className="mt-5">
+                                <div className="flex justify-between items-center border-b border-zinc-300 py-2">
+                                    <p className='font-semibold text-base'>Subtotal</p>
+                                    <p className='font-semibold text-base'>{prize.total}<span className='text-neutral-400'> USD</span></p>
+                                </div>
+
+                                <div className="flex justify-between items-center border-b border-zinc-300 py-2">
+                                    <p className='font-semibold text-base'>Tax and Fees</p>
+                                    <p className='font-semibold text-base'>{prize.tax}<span className='text-neutral-400'> USD</span></p>
+                                </div>
+
+                                <div className="flex justify-between items-center border-b border-zinc-300 py-2">
+                                    <p className='font-semibold text-base'>Delivery</p>
+                                    <p className='font-semibold text-base'>30<span className='text-neutral-400'> USD</span></p>
+                                </div>
+
+                                <div className="flex justify-between items-center border-b border-zinc-300 py-2">
+                                    <p className='font-semibold text-base'>Total <span className='text-neutral-400'> ({`${prize.item} items`})</span></p>
+                                    <p className='font-semibold text-base'>{prize.final}<span className='text-neutral-400'> USD</span></p>
+                                </div>
+
                             </div>
                         </div>
 
