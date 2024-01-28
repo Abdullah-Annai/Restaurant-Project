@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom'
 import { LuChefHat } from 'react-icons/lu'
 const Login = () => {
   return (
-    <div className='sm:pb-20 md:min-h-screen w-full bg-zinc-200'>
+    <div className='sm:pb-20 md:min-h-screen w-full bg-zinc-200 pb-10'>
         <div className="max-w-5xl mx-auto flex flex-col-reverse md:flex-row md:justify-between md:gap-16">
-            <form className='mt-14 mx-auto bg-white h-full w-3/4 md:w-1/2 px-10 py-10 shadow-lg shadow-zinc-300 animate__animated animate__fadeInUp transition-all' action="/login" method="post">
+            <form className='mt-14 mx-auto bg-white h-full w-full md:w-1/2 px-10 py-10 shadow-lg shadow-zinc-300 animate__animated animate__fadeInUp transition-all' action="/login" method="post">
                 <div className="relative mb-8 group">
                 <input className='w-full p-2 border rounded-lg border-primary/50 outline-none ps-11 font-light' id="email" type="email" name='email' required/>
                     <div className="input-group absolute left-3 top-2 flex gap-3 items-center text-zinc-400">
@@ -23,13 +23,13 @@ const Login = () => {
             </div>
             <button className='text-center text-white bg-primary/95 hover:bg-primary px-4 py-2 rounded-lg w-full mb-5'>Login</button>
             <p className='text-zinc-800 font-extralight'>Don't have an account? <Link className='text-primary' to="/signin">Sign up</Link></p>
-            <div className="flex md:justify-between mt-3">
+            <div className="flex justify-between mt-3">
                 <div className="left">
                     <input type='checkbox' id='remem' name="remember" className='p-2 mr-2 border-zinc-300'/>
-                    <label htmlFor='remem' className='text-zinc-400 font-light'>Remember me</label>
+                    <label htmlFor='remem' className='text-zinc-400 font-light text-sm md:text-base'>Remember me</label>
                 </div>
                 <div className="right">
-                    <Link className='text-primary font-light' to="#">Forget password?</Link>
+                    <Link className='text-primary font-light text-sm md:text-base' to="#">Forget password?</Link>
                 </div>
             </div>
             </form>

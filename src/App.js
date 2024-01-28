@@ -1,4 +1,4 @@
-import React from "react";
+import React,{ useState,useEffect } from "react";
 import Header  from "./components/Header";
 import Footer from "./components/Footer";
 import Index from './section/Sections'
@@ -8,9 +8,21 @@ import Login from '../src/components/Login'
 import Menu from './section/Food_Menu'
 import BookTable from "./section/BookTable";
 import { FoodProvider } from "./components/FoodContext";
+import Preloader from "./components/Preloader";
 function App() {
+
+  const [loader,setLoader] = useState(0)
+
+  useEffect(()=>{
+    setLoader(1)
+    setTimeout(()=>{
+      setLoader(0)
+    },8000)
+  },[])
   return (
     <div>
+      {loader == 1 ? <Preloader /> :
+      <>
       <FoodProvider>
           <Header />
           <Routes path="/">
@@ -22,6 +34,8 @@ function App() {
           </Routes>
         </FoodProvider>
         <Footer />
+      </>
+  }
     </div>
   )
 }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import menu1 from '../assets/Images/food-menu/menu-1.png'
 import menu2 from '../assets/Images/food-menu/menu-2.png'
 import menu3 from '../assets/Images/food-menu/menu-3.png'

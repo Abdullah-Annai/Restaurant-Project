@@ -130,7 +130,7 @@ const Header = () => {
                     ))}
                 </ul>
             </div>
-            <div className="logo cursor-pointer ps-2 md:ps-0 lg:mr-28">
+            <div className="logo cursor-pointer ps-2 md:ps-0 lg:mr-28 ">
                 <Link to="/"><img src={logo} alt="" /></Link>
             </div>
             <div className="text-neutral-800 font-medium text-xl flex gap-4">
@@ -141,7 +141,7 @@ const Header = () => {
                         <span className='cursor-pointer' onClick={showSlide}><ion-icon name="cart-outline"></ion-icon></span>
 
                         {/* Food Cart */}
-                        <div ref={handleOutCart} className={`absolute bg-white/50 backdrop-blur-md z-10 border-l-2 border-primary/70 -left-9 transition-all origin-top duration-300 ${showCart == 0 ? "scale-y-0" : "scale-y-1"} top-14 min-h-screen h-auto w-[350px] p-5 pb-8`}>
+                        <div ref={handleOutCart} className={`absolute bg-white/50 backdrop-blur-md z-10 border-l-2 border-primary/70 -left-[200px] md:-left-9 transition-all origin-top duration-300 ${showCart == 0 ? "scale-y-0" : "scale-y-1"} top-14 min-h-[80vh] h-auto w-[350px] p-5 pb-8`}>
                             <p className='font-serif text-center text-stone-700 font-semibold border-b-2 border-zinc-200 pb-3'>Cart</p>
                             <div className="grid lg:grid-cols-3 mt-3">
                                 {foodQty.map((val)=>(
@@ -187,7 +187,7 @@ const Header = () => {
                         </div>
 
                         {/* Favorite Item */}
-                        <div ref={handleOutHeart} className={`absolute bg-white/50 backdrop-blur-md z-10 border-l-2 border-red-300 -left-14 transition-all origin-top duration-300 ${showHeart == 1 ? "scale-y-1" : "scale-y-0" } top-14 min-h-screen h-auto w-[350px] p-5 pb-8`}>
+                        <div ref={handleOutHeart} className={`absolute bg-white/50 backdrop-blur-md z-10 border-l-2 border-red-300 -left-[200px] md:-left-14 transition-all origin-top duration-300 ${showHeart == 1 ? "scale-y-1" : "scale-y-0" } top-14 min-h-[80vh] h-auto w-[350px] p-5 pb-8`}>
                             <p className='font-serif text-center text-stone-700 font-semibold border-b-2 border-zinc-200 pb-3'>Favorite</p>
                             {favorite.length > 0 ? 
                             <>

@@ -27,7 +27,7 @@ const Hero = () => {
     }
   }
   return (
-    <div className='h-auto md:h-screen w-full pb-24 md:pb-0'>
+    <div className='h-auto md:h-[90vh] w-full pb-24 md:pb-0'>
         <div className="max-w-6xl mx-auto h-full mt-1 flex md:justify-between md:flex-row flex-col p-5 relative">
             <div data-aos="fade-up" data-aos-once="true" className="hero-left md:w-1/2 md:mt-[3em]">
                 <p className='font-semibold text-lg text-stone-800 uppercase  md:mt-10 mb-5'>Welcome to our</p>
@@ -36,7 +36,7 @@ const Hero = () => {
                 <Link to="/menu" className='btn mt-5 font-serif font-medium animate__animated animate__fadeInDown py-3'>Explore our menu</Link>
 
                 {/* Thumnails Slide */}
-                <div className="w-full min-h-20 absolute md:static top-[98%] md:top-0 md:mt-10 py-3 pb-10 md:pb-0">
+                <div className="w-full min-h-20 absolute md:static top-[99%] md:top-0 md:mt-10 py-3 pb-10 md:pb-0">
                     <ul className='flex gap-5 select-none'>
                         {images.map((img,index) =>(
                             <li onClick={()=>handleClick(index)} className={`cursor-pointer h-20 w-20 rounded-full bg-[#FEE9C8] border-4 ${hero === index ? "border-[#FED391]" : " "}`} key={index}><img src={img} alt="" /></li>
@@ -46,7 +46,7 @@ const Hero = () => {
                 </div>
 
             </div>
-            <div className="hero-right -mt-30 md:mt-0 md:w-1/2 select-none">
+            <div className="hero-right relative top-10 pb-10 md:pb-0 md:static -mt-38 md:mt-0 md:w-1/2 select-none">
                 {images.map((img,index)=>(
                     <img style={{
                         transform : hero == index ? "scale(1)" : "scale(0)",

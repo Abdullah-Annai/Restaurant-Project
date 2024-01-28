@@ -2,7 +2,7 @@ import React from 'react'
 
 const Number = () => {
   return (
-    <div className='relative min-h-[40vh] w-full text-white bg-[url(./assets/Images/cta-sp-bg.svg)] bg-black pb-8'>
+    <div className='relative min-h-[40vh] w-full text-white bg-[url(./assets/Images/cta-sp-bg.svg)] bg-black pb-8 mt-5 md:mt-0'>
         <div data-aos="fade-right" data-aos-once="true" className="h-full max-w-5xl mx-auto grid sm:grid-cols-1 md:grid-cols-4 gap-3 text-center font-serif">
             <div className="mt-12">
               <h3 className='text-6xl font-bold font-sarif'>15<span className='text-xl -top-1 relative'>+</span></h3>

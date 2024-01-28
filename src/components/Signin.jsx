@@ -6,7 +6,7 @@ const Signin = () => {
   return (
     <div className='sm:pb-20 md:min-h-screen w-full bg-zinc-200'>
         <div className="max-w-5xl mx-auto flex flex-col-reverse md:flex-row md:justify-between md:gap-16">
-          <form data-aos="fade-down" data-aos-once="true" className='mt-14 mx-auto bg-white h-full w-3/4 md:w-1/2 px-10 py-10 shadow-lg shadow-zinc-300' action="/signin" method="post" autoComplete='off'>
+          <form data-aos="fade-down" data-aos-once="true" className='mt-14 mx-auto bg-white h-full w-full md:w-1/2 px-10 py-10 shadow-lg shadow-zinc-300' action="/signin" method="post" autoComplete='off'>
 
             <div className="relative mb-8 group">
               <input className='w-full p-2 border rounded-lg border-primary border-primary/50 outline-none ps-11 font-light' type="text" name='username' required/>
