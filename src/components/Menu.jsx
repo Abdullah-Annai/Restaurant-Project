@@ -1,11 +1,34 @@
-import React,{ useContext} from 'react'
+import React,{ useContext, useState} from 'react'
 import { FoodContext } from './FoodContext'
 
 const Menu = ({value,animation}) => {
 
-  const { setFood ,setFavore , favorite, delFavore} = useContext(FoodContext)
+  const { foodItem ,setFood ,setFavore , favorite, delFavore} = useContext(FoodContext)
+
+  const [qty,setQty] = useState([])
+
+  const createQty = (id)=>{
+    setQty({id:id,qtys:1})
+  }
+
+
+  const handleInc = (id)=>{
+    let value = qty.map((val)=>{
+      return val.id == id ? {...val,qtys: val.qtys += 1 } : val
+    })
+    setQty(value)
+  }
+
+  const handleDec = (id)=>{
+    let value = qty.map((val)=>{
+      return val.id == id ? {...val,qtys: val.qtys -= 1 } : val
+    })
+    setQty(value)
+  }
+
 
   const handleClick =(element,foodId)=>{
+    console.log("hit")
     let foodImage = element.querySelector("#food-img").src
     let foodName = element.querySelector("#food-name").innerHTML
     let foodPrize = element.querySelector("#food-prize").innerHTML.split("$")[1]
@@ -53,7 +76,14 @@ const Menu = ({value,animation}) => {
           <div className={`card-${index} animate__animated ${animation} transition-all duration-300 border px-3 py-2 shadow-lg rounded-lg md:basis-[40%] lg:basis-[45%] pb-6`}>
             <div className="price flex justify-between items-center">
               <img id="food-img" className='border-2 border-dashed border-primary p-1 rounded-full' src={require(`../assets/Images/menu-book/menu-book-${index}.png`)} alt="" />
+              <div className="flex justify-evenly items-center">
+                    <button onClick={()=>handleDec(val.id)} className='bg-primary text-white rounded-full h-6 w-6 flex justify-center items-center hover:font-semibold hover:border-2 hover:bg-white hover:border-primary hover:text-primary'>-</button>
+                    {qty.length > 0 ?
+                    qty.map((val)=> val.id == `card-${index}` ? <p>{val.qtys}</p> : "") : <p>01</p> && createQty(`card-${index}`)}
+                    <button onClick={()=>handleInc(val.id)} className='bg-primary text-white rounded-full h-6 w-6 flex justify-center items-center hover:font-semibold hover:border-2 hover:bg-white hover:border-primary hover:text-primary'>+</button>
+              </div>
               <p id='food-prize' className=' text-primary text-3xl font-semibold'>${val.split(":")[1]}</p>
+
             </div>
             <p id='food-name' className='text-xl font-semibold'>{val.split(":")[0]}</p>
             <p className='max-w-[80%] text-sm text-zinc-400 pb-4'>There are many variations of passages Lorem Ipsum form</p>
@@ -63,6 +93,7 @@ const Menu = ({value,animation}) => {
            </div>
           </div>
         ) : ''
+
       ))}
     </div>
   )
