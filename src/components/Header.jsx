@@ -152,7 +152,7 @@ const Header = () => {
                                         <p className='text-base '>{val.name}</p>
                                        <div className="prize flex flex-col gap-4 mb-5 relative">
                                             <span onClick={()=>handleDelete(val.id)} className='absolute right-2 text-primary text-xl font-extrabold rounded-full h-5 w-5 flex items-center justify-center hover:border hover:bg-primary hover:text-white'><ion-icon name="close-outline"></ion-icon></span>
-                                            <p className='text-primary font-lg font-semibold text-center'>${val.prize}</p>
+                                            <p className='text-primary font-lg font-semibold text-center'>₹{val.prize}</p>
                                             <div className="flex justify-evenly items-center">
                                                 <button onClick={()=>handleDec(val.id)} className='bg-primary text-white rounded-full h-6 w-6 flex justify-center items-center hover:font-semibold hover:border-2 hover:bg-white hover:border-primary hover:text-primary'>-</button>
                                                 <p className='text-base font-semibold'>{val.qty}</p>
@@ -165,22 +165,22 @@ const Header = () => {
                             {foodQty.length > 0 ? <div  className="mt-5">
                                 <div className="flex justify-between items-center border-b border-zinc-300 py-2">
                                     <p className='font-semibold text-base'>Subtotal</p>
-                                    <p className='font-semibold text-base'>{prize.total}<span className='text-neutral-400'> USD</span></p>
+                                    <p className='font-semibold text-base'>{prize.total}<span className='text-neutral-400'> INR</span></p>
                                 </div>
 
                                 <div className="flex justify-between items-center border-b border-zinc-300 py-2">
                                     <p className='font-semibold text-base'>Tax and Fees</p>
-                                    <p className='font-semibold text-base'>{prize.tax}<span className='text-neutral-400'> USD</span></p>
+                                    <p className='font-semibold text-base'>{prize.tax}<span className='text-neutral-400'> INR</span></p>
                                 </div>
 
                                 <div className="flex justify-between items-center border-b border-zinc-300 py-2">
                                     <p className='font-semibold text-base'>Delivery</p>
-                                    <p className='font-semibold text-base'>30<span className='text-neutral-400'> USD</span></p>
+                                    <p className='font-semibold text-base'>30<span className='text-neutral-400'> INR</span></p>
                                 </div>
 
                                 <div className="flex justify-between items-center border-b border-zinc-300 py-2">
                                     <p className='font-semibold text-base'>Total <span className='text-neutral-400'> ({`${prize.item} items`})</span></p>
-                                    <p className='font-semibold text-base'>{prize.final}<span className='text-neutral-400'> USD</span></p>
+                                    <p className='font-semibold text-base'>{prize.final}<span className='text-neutral-400'> INR</span></p>
                                 </div>
 
                             </div> : <p className='font-bold flex justify-center items-center h-[50vh]'>No Item</p>}
@@ -198,7 +198,7 @@ const Header = () => {
                                         <img src={val.image} alt="" />
                                         {/* Detail */}
                                         <p className='text-base '>{val.name}</p>
-                                        <p className='text-3xl flex justify-center items-center text-primary'>${val.prize}</p>
+                                        <p className='text-3xl flex justify-center items-center text-primary'>₹{val.prize}</p>
                                     </>
                                 ))}
                             </div>
