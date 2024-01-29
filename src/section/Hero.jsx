@@ -39,7 +39,7 @@ const Hero = () => {
                 <div className="w-full min-h-20 absolute md:static top-[99%] md:top-0 md:mt-10 py-3 pb-10 md:pb-0">
                     <ul className='flex gap-5 select-none'>
                         {images.map((img,index) =>(
-                            <li onClick={()=>handleClick(index)} className={`cursor-pointer h-20 w-20 rounded-full bg-[#FEE9C8] border-4 ${hero === index ? "border-[#FED391]" : " "}`} key={index}><img src={img} alt="" /></li>
+                            <li key={index} onClick={()=>handleClick(index)} className={`cursor-pointer h-20 w-20 rounded-full bg-[#FEE9C8] border-4 ${hero === index ? "border-[#FED391]" : " "}`} key={index}><img src={img} alt="" /></li>
                         ))}
                         <span className='h-10 cursor-pointer bg-[#FEE9C8] w-8 rounded-sm mt-5 ml-9 flex items-center justify-center font-thin text-xl text-primary' onClick={nextSlide}><ion-icon name="chevron-forward-outline"></ion-icon></span>
                     </ul>
@@ -48,7 +48,7 @@ const Hero = () => {
             </div>
             <div className="hero-right relative top-10 pb-10 md:pb-0 md:static -mt-38 md:mt-0 md:w-1/2 select-none">
                 {images.map((img,index)=>(
-                    <img style={{
+                    <img key={index} style={{
                         transform : hero == index ? "scale(1)" : "scale(0)",
                         transition : "all .2s ease-in-out"
 

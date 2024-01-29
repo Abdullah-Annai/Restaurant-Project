@@ -125,8 +125,8 @@ const Header = () => {
         <div className="max-w-6xl mx-auto flex items-center justify-between">
             <div className="hidden md:block">
                 <ul className='flex gap-2'>
-                    {menu.map((val)=>(
-                        <li><Link to={val.path} className={`w-full text-white cursor-pointer text-center my-4 p-3 md:text-neutral-800 font-[600] text-sm transition hover:text-primary`}>{val.name}</Link></li>
+                    {menu.map((val,index)=>(
+                        <li key={index}><Link to={val.path} className={`w-full text-white cursor-pointer text-center my-4 p-3 md:text-neutral-800 font-[600] text-sm transition hover:text-primary`}>{val.name}</Link></li>
                     ))}
                 </ul>
             </div>
@@ -141,17 +141,19 @@ const Header = () => {
                         <span className='cursor-pointer' onClick={showSlide}><ion-icon name="cart-outline"></ion-icon></span>
 
                         {/* Food Cart */}
-                        <div ref={handleOutCart} className={`absolute bg-white/50 backdrop-blur-md z-10 border-l-2 border-primary/70 -left-[200px] md:-left-9 transition-all origin-top duration-300 ${showCart == 0 ? "scale-y-0" : "scale-y-1"} top-14 min-h-[80vh] h-auto w-[350px] p-5 pb-8`}>
+                        <div ref={handleOutCart} className={`absolute bg-white/50 backdrop-blur-md z-10 border-l-2 border-primary/70 -left-[200px] lg:-left-9 transition-all origin-top duration-300 ${showCart == 0 ? "scale-y-0" : "scale-y-1"} top-14 min-h-[80vh] h-auto w-[350px] p-5 pb-8`}>
                             <p className='font-serif text-center text-stone-700 font-semibold border-b-2 border-zinc-200 pb-3'>Cart</p>
                             <div className="grid lg:grid-cols-3 mt-3">
                                 {foodQty.map((val)=>(
                                     <>
                                         {/* image */}
-                                        <img src={val.image} alt="" />
+                                        <div className="flex justify-center items-center md:grid">
+                                            <img src={val.image} alt="" />
+                                        </div>
                                         {/* Detail */}
-                                        <p className='text-base '>{val.name}</p>
+                                        <p className='text-base text-center md:text-left'>{val.name}</p>
                                        <div className="prize flex flex-col gap-4 mb-5 relative">
-                                            <span onClick={()=>handleDelete(val.id)} className='absolute right-2 text-primary text-xl font-extrabold rounded-full h-5 w-5 flex items-center justify-center hover:border hover:bg-primary hover:text-white'><ion-icon name="close-outline"></ion-icon></span>
+                                            <span onClick={()=>handleDelete(val.id)} className='absolute right-2 text-primary text-xl font-extrabold rounded-full h-5 w-5 flex items-center justify-center hover:border hover:bg-primary hover:text-white -top-[100px] md:top-0'><ion-icon name="close-outline"></ion-icon></span>
                                             <p className='text-primary font-lg font-semibold text-center'>₹{val.prize}</p>
                                             <div className="flex justify-evenly items-center">
                                                 <button onClick={()=>handleDec(val.id)} className='bg-primary text-white rounded-full h-6 w-6 flex justify-center items-center hover:font-semibold hover:border-2 hover:bg-white hover:border-primary hover:text-primary'>-</button>
@@ -187,7 +189,7 @@ const Header = () => {
                         </div>
 
                         {/* Favorite Item */}
-                        <div ref={handleOutHeart} className={`absolute bg-white/50 backdrop-blur-md z-10 border-l-2 border-red-300 -left-[200px] md:-left-14 transition-all origin-top duration-300 ${showHeart == 1 ? "scale-y-1" : "scale-y-0" } top-14 min-h-[80vh] h-auto w-[350px] p-5 pb-8`}>
+                        <div ref={handleOutHeart} className={`absolute bg-white/50 backdrop-blur-md z-10 border-l-2 border-red-300 -left-[200px] lg:-left-14 transition-all origin-top duration-300 ${showHeart == 1 ? "scale-y-1" : "scale-y-0" } top-14 min-h-[80vh] h-auto w-[350px] p-5 pb-8`}>
                             <p className='font-serif text-center text-stone-700 font-semibold border-b-2 border-zinc-200 pb-3'>Favorite</p>
                             {favorite.length > 0 ? 
                             <>

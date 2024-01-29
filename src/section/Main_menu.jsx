@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState} from 'react'
 import menu1 from '../assets/Images/food-menu/menu-1.png'
 import menu2 from '../assets/Images/food-menu/menu-2.png'
 import menu3 from '../assets/Images/food-menu/menu-3.png'
@@ -138,7 +138,7 @@ const Main_menu = () => {
             </ul>
             <div data-aos="fade-left" data-aos-once="true" className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
               {menuData.map((_,index)=>
-                index == slide ? 
+                index === slide ? 
                   menuData[slide].map((value)=>(
                     <div className="p-5 rounded bg-white shadow-xl shadow-neutral-300 animate__animated animate__fadeInLeft">
                     <img className='border-2 border-dotted border-primary rounded-full p-1 pb-1' src={value.img} alt="" />
