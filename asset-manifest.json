@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/Restaurant-Project/static/css/main.556ca267.css",
-    "main.js": "/Restaurant-Project/static/js/main.b3fa09b3.js",
+    "main.css": "/Restaurant-Project/static/css/main.3aa3682b.css",
+    "main.js": "/Restaurant-Project/static/js/main.b7d91b31.js",
     "static/media/testimonial-anim-2.svg": "/Restaurant-Project/static/media/testimonial-anim-2.cffbe4590713ac0aea6b728ae5a1c270.svg",
     "static/media/testimonial-anim-1.svg": "/Restaurant-Project/static/media/testimonial-anim-1.0c440d9857daf43c827e351d5734db69.svg",
     "static/media/cta-sp-bg.svg": "/Restaurant-Project/static/media/cta-sp-bg.25780f0f6051c6af827d.svg",
@@ -36,11 +36,11 @@
     "static/media/menu-book-13.png": "/Restaurant-Project/static/media/menu-book-13.cda1a98e0b2d713f92a5.png",
     "static/media/menu-book-2.png": "/Restaurant-Project/static/media/menu-book-2.e1109812f151397d7732.png",
     "index.html": "/Restaurant-Project/index.html",
-    "main.556ca267.css.map": "/Restaurant-Project/static/css/main.556ca267.css.map",
-    "main.b3fa09b3.js.map": "/Restaurant-Project/static/js/main.b3fa09b3.js.map"
+    "main.3aa3682b.css.map": "/Restaurant-Project/static/css/main.3aa3682b.css.map",
+    "main.b7d91b31.js.map": "/Restaurant-Project/static/js/main.b7d91b31.js.map"
   },
   "entrypoints": [
-    "static/css/main.556ca267.css",
-    "static/js/main.b3fa09b3.js"
+    "static/css/main.3aa3682b.css",
+    "static/js/main.b7d91b31.js"
   ]
 }
