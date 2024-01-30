@@ -189,7 +189,7 @@ const Header = () => {
                         </div>
 
                         {/* Favorite Item */}
-                        <div ref={handleOutHeart} className={`absolute bg-white/50 backdrop-blur-md z-10 border-l-2 border-red-300 -left-[200px] lg:-left-14 transition-all origin-top duration-300 ${showHeart == 1 ? "scale-y-1" : "scale-y-0" } top-14 min-h-[80vh] h-auto w-[350px] p-5 pb-8`}>
+                        <div ref={handleOutHeart} className={`absolute bg-white/50 backdrop-blur-md z-10 border-l-2 -left-[200px] lg:-left-14 transition-all origin-top duration-300 ${showHeart == 1 ? "scale-y-1" : "scale-y-0" } top-14 min-h-[80vh] h-auto w-[350px] p-5 pb-8`}>
                             <p className='font-serif text-center text-stone-700 font-semibold border-b-2 border-zinc-200 pb-3'>Favorite</p>
                             {favorite.length > 0 ? 
                             <>
@@ -197,9 +197,11 @@ const Header = () => {
                                 {favorite.map((val)=>(
                                     <>
                                         {/* image */}
-                                        <img src={val.image} alt="" />
+                                        <div className="flex justify-center items-center">
+                                            <img src={val.image} alt="" />
+                                        </div>
                                         {/* Detail */}
-                                        <p className='text-base '>{val.name}</p>
+                                        <p className='text-base text-center lg:text-start'>{val.name}</p>
                                         <p className='text-3xl flex justify-center items-center text-primary'>₹{val.prize}</p>
                                     </>
                                 ))}

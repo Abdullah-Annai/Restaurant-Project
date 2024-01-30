@@ -1,18 +1,20 @@
 import React from 'react'
-import { useSpring, animated }from 'react-spring'
-
+import { useSpring, animated } from 'react-spring'
+import { InView, useInView } from 'react-intersection-observer'
 
 const Number = () => {
 
   function Number({n}){
+
+    const [ref,inView] = useInView({ triggerOnce: true })
     const {number} = useSpring({
       from: { number: 0},
-      number: n,
+      number: inView ? n : 0,
       delay: 200,
       config: { mass:1,tension:20,friction:10},
     })
 
-    return <animated.div>{number.to((n)=>n.toFixed(0))}</animated.div>
+    return <animated.div ref={ref} >{number.to((n)=>n.toFixed(0))}</animated.div>
   }
 
 

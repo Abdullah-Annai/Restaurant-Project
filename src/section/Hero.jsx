@@ -41,7 +41,7 @@ const Hero = () => {
                         {images.map((img,index) =>(
                             <li key={index} onClick={()=>handleClick(index)} className={`cursor-pointer h-20 w-20 rounded-full bg-[#FEE9C8] border-4 ${hero === index ? "border-[#FED391]" : " "}`} key={index}><img src={img} alt="" /></li>
                         ))}
-                        <span className='h-10 cursor-pointer bg-[#FEE9C8] w-8 rounded-sm mt-5 ml-9 flex items-center justify-center font-thin text-xl text-primary' onClick={nextSlide}><ion-icon name="chevron-forward-outline"></ion-icon></span>
+                        <span className='h-10 cursor-pointer bg-[#FEE9C8] w-8 rounded-sm mt-5 ml-3 md:ml-9 flex items-center justify-center font-thin text-xl text-primary' onClick={nextSlide}><ion-icon name="chevron-forward-outline"></ion-icon></span>
                     </ul>
                 </div>
 
