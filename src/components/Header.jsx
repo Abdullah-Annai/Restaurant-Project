@@ -104,10 +104,6 @@ const Header = () => {
     {
         name : 'Contact',
         path : "#"
-    },
-    {
-        name : 'About Us',
-        path : "#"
     }]
 
   const showMenu = ()=>{

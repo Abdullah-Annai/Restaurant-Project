@@ -1,0 +1,21 @@
+:root{
+    --border-radius: 25px;
+}
+
+main{
+    display: grid;
+    grid-template-columns: 22% auto;
+    grid-template-rows: 100vh;
+}
+
+.active{
+    position: relative;
+    background-color: white;
+    color: rgb(244,63,94);
+    border-top-left-radius: var(--border-radius);
+    border-bottom-left-radius: var(--border-radius);
+}
+ul Link.active{
+    margin-inline-start: 40px;
+    background-color: red;
+}
