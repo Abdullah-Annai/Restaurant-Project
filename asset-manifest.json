@@ -1,27 +1,37 @@
 {
   "files": {
-    "main.css": "/Restaurant-Project/static/css/main.a54eb26d.css",
-    "main.js": "/Restaurant-Project/static/js/main.bc53ee8c.js",
+    "main.css": "/Restaurant-Project/static/css/main.4b50c34c.css",
+    "main.js": "/Restaurant-Project/static/js/main.09cf35b4.js",
     "static/media/testimonial-anim-2.svg": "/Restaurant-Project/static/media/testimonial-anim-2.cffbe4590713ac0aea6b728ae5a1c270.svg",
     "static/media/testimonial-anim-1.svg": "/Restaurant-Project/static/media/testimonial-anim-1.0c440d9857daf43c827e351d5734db69.svg",
     "static/media/cta-sp-bg.svg": "/Restaurant-Project/static/media/cta-sp-bg.25780f0f6051c6af827d.svg",
     "static/media/loader.gif": "/Restaurant-Project/static/media/loader.234890d63ce51bdc7cf6.gif",
     "static/media/footer-bg.png": "/Restaurant-Project/static/media/footer-bg.86c97556d127bde389e9.png",
+    "static/media/chart.png": "/Restaurant-Project/static/media/chart.45993546d47f22631820.png",
     "static/media/hero-1.png": "/Restaurant-Project/static/media/hero-1.82ec3a57782b31eebfa7.png",
     "static/media/hero-2.png": "/Restaurant-Project/static/media/hero-2.8903e0c86870c844bcdc.png",
     "static/media/chef-1.png": "/Restaurant-Project/static/media/chef-1.5e18bf131c95b004c787.png",
     "static/media/chef-3.png": "/Restaurant-Project/static/media/chef-3.f5b06362e3cf513e1eea.png",
     "static/media/chef-2.png": "/Restaurant-Project/static/media/chef-2.878f60ea21b4e988efd2.png",
     "static/media/hero-3.png": "/Restaurant-Project/static/media/hero-3.ac35f752fe739223e198.png",
+    "static/media/chart-2.png": "/Restaurant-Project/static/media/chart-2.8c6831ad08b01e879710.png",
+    "static/media/chart-3.png": "/Restaurant-Project/static/media/chart-3.95dd8f15639d84d7cfc9.png",
     "static/media/footer-subscribe-bg.png": "/Restaurant-Project/static/media/footer-subscribe-bg.f440624c83108d7acbfe.png",
+    "static/media/admin.png": "/Restaurant-Project/static/media/admin.99ac37579a7c167020f4.png",
     "static/media/testimonial-2.png": "/Restaurant-Project/static/media/testimonial-2.e9f1dd4833d41dee25fc.png",
     "static/media/testimonial-1.png": "/Restaurant-Project/static/media/testimonial-1.e6aff50b2c7494827d33.png",
+    "static/media/trend-1.jpg": "/Restaurant-Project/static/media/trend-1.7f13f851f3bed299d2e0.jpg",
     "static/media/Bakilda Histori.woff": "/Restaurant-Project/static/media/Bakilda Histori.d6af3e759fc1dc2cbb21.woff",
+    "static/media/food-1.jpg": "/Restaurant-Project/static/media/food-1.1a04ce6a9391367d09fc.jpg",
+    "static/media/trend-5.jpg": "/Restaurant-Project/static/media/trend-5.dcb47be6ea9cbab08b94.jpg",
     "static/media/menu-3.png": "/Restaurant-Project/static/media/menu-3.01deb4511f8488d6bba8.png",
     "static/media/menu-4.png": "/Restaurant-Project/static/media/menu-4.92c550d6c13fb449580d.png",
     "static/media/menu-2.png": "/Restaurant-Project/static/media/menu-2.7ee587b4d04dc28e3653.png",
     "static/media/menu-1.png": "/Restaurant-Project/static/media/menu-1.8384ab5c2357486c2b2b.png",
+    "static/media/review-3.jpg": "/Restaurant-Project/static/media/review-3.46f16940421611151ef9.jpg",
     "static/media/logo.svg": "/Restaurant-Project/static/media/logo.a9f70e808b0b32f9727bb6453be27826.svg",
+    "static/media/review-1.jpg": "/Restaurant-Project/static/media/review-1.1cd7e309a14ee7d4aff1.jpg",
+    "static/media/review-2.jpg": "/Restaurant-Project/static/media/review-2.838cf6688b172c485d46.jpg",
     "static/media/menu-book-10.png": "/Restaurant-Project/static/media/menu-book-10.539fdad6c05c87b5edf8.png",
     "static/media/menu-book-16.png": "/Restaurant-Project/static/media/menu-book-16.67a8c9408b1001c02dbc.png",
     "static/media/menu-book-5.png": "/Restaurant-Project/static/media/menu-book-5.567efe8353d8986236dd.png",
@@ -36,11 +46,11 @@
     "static/media/menu-book-13.png": "/Restaurant-Project/static/media/menu-book-13.cda1a98e0b2d713f92a5.png",
     "static/media/menu-book-2.png": "/Restaurant-Project/static/media/menu-book-2.e1109812f151397d7732.png",
     "index.html": "/Restaurant-Project/index.html",
-    "main.a54eb26d.css.map": "/Restaurant-Project/static/css/main.a54eb26d.css.map",
-    "main.bc53ee8c.js.map": "/Restaurant-Project/static/js/main.bc53ee8c.js.map"
+    "main.4b50c34c.css.map": "/Restaurant-Project/static/css/main.4b50c34c.css.map",
+    "main.09cf35b4.js.map": "/Restaurant-Project/static/js/main.09cf35b4.js.map"
   },
   "entrypoints": [
-    "static/css/main.a54eb26d.css",
-    "static/js/main.bc53ee8c.js"
+    "static/css/main.4b50c34c.css",
+    "static/js/main.09cf35b4.js"
   ]
 }
