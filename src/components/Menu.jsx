@@ -12,9 +12,9 @@ const Menu = ({value,animation}) => {
 
     setFood({
       id: foodId,
-      qty: 1,
-      image : foodImage,
-      name : foodName,
+      quantity: 1,
+      path : foodImage,
+      food_name : foodName,
       prize : foodPrize
     })
   }
@@ -28,9 +28,9 @@ const Menu = ({value,animation}) => {
 
     setFavore({
       id: foodId,
-      qty: 1,
-      image : foodImage,
-      name : foodName,
+      quantity: 1,
+      path : foodImage,
+      food_name : foodName,
       prize : foodPrize
     })
   } else{
@@ -58,7 +58,7 @@ const Menu = ({value,animation}) => {
             <p id='food-name' className='text-xl font-semibold'>{val.split(":")[0]}</p>
             <p className='max-w-[80%] text-sm text-zinc-400 pb-4'>There are many variations of passages Lorem Ipsum form</p>
            <div className="flex">
-              <button onClick={()=>handleClick(document.querySelector(`.card-${index}`),`${value}-${index}`)} className={`px-1 py-2 rounded-lg w-full text-white bg-primary/90 hover:bg-primary font-semibold font-sans text-base md:col-span-2 mt-2 basis-3/4`}>Place Order</button>
+              <button onClick={()=>handleClick(document.querySelector(`.card-${index}`),`${value}-${index}`)} className={`px-1 py-2 rounded-lg w-full text-white bg-primary/90 hover:bg-primary font-semibold font-sans text-base md:col-span-2 mt-2 basis-3/4`}>Add to cart</button>
               <button onClick={()=>handleFavore(document.querySelector(`.card-${index}`),`${value}-${index}`)} className='basis-1/4 flex justify-center items-center text-[red]'><svg height="30px" width="30px" xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><path d="M352.92 80C288 80 256 144 256 144s-32-64-96.92-64c-52.76 0-94.54 44.14-95.08 96.81-1.1 109.33 86.73 187.08 183 252.42a16 16 0 0018 0c96.26-65.34 184.09-143.09 183-252.42-.54-52.67-42.32-96.81-95.08-96.81z" fill={favorite.some(item => item.id === `${value}-${index}`) ? "red" : "none"} stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/></svg></button>
            </div>
           </div>

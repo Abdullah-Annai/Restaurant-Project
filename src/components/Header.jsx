@@ -1,8 +1,9 @@
 import React,{ useState,useContext, useEffect } from 'react'
 import logo from '../assets/Images/logo.svg'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { FoodContext } from './FoodContext'
 import { useClickAway } from "@uidotdev/usehooks";
+import api from './api'
 
 const Header = () => {
 
@@ -11,6 +12,8 @@ const Header = () => {
   const [foodQty,setFoodQty] = useState([])
 
   const [active,setActive] = useState(0);
+
+  const [Flocation,setLocation] = useState('')
 
   const [showCart,setShowCart] = useState(0)
 
@@ -30,12 +33,36 @@ const Header = () => {
     setShowCart(0)
   }
 
+  const setlocation = (e)=>{
+    setLocation(e.target.value)
+  }
+
   const [prize,setPrize] = useState({
     total:0,
     tax:0,
     item: 0,
     final: 0
   })
+
+  const navigator = useNavigate()
+
+  const submitOrder = ()=>{
+    if(localStorage.getItem("token") == null){
+        return navigator("/login")
+    } else{
+        foodQty.map(async (val)=>{
+            try{
+                val['location'] = Flocation
+                val['token'] = localStorage.getItem("token")
+                await api.post("/order/item",val)
+                setFoodQty([])
+                delFood([])
+            } catch(err){
+                console.log(err.messages)
+            }
+        })
+    }
+  }
 
   const handleDelete = (id)=>{
         let newValue = foodQty.filter((item)=>item.id != id)
@@ -48,7 +75,7 @@ const Header = () => {
     let taxs = 0
     let finals= 0
     foodQty.map((val)=>{
-        prize += val.qty * val.prize
+        prize += val.quantity * val.prize
         taxs+=Math.round(0.03*prize)
         finals=prize+taxs+30
         setPrize({total:prize,tax:taxs,item:foodQty.length,final:finals})
@@ -63,10 +90,10 @@ const Header = () => {
     let prize=0;
     const updatedFoodQty = foodQty.map((val) =>{
         if(val.id == id){
-            prize+=val.qty * val.prize
-            return {...val,qty:val.qty+=1}
+            prize+=val.quantity * val.prize
+            return {...val,quantity:val.quantity+=1}
         } else{
-            prize+=val.qty * val.prize
+            prize+=val.quantity * val.prize
             return val
         }
     });
@@ -75,7 +102,7 @@ const Header = () => {
 
   const handleDec = (id)=>{
     const decValue = foodQty.map((val)=>
-        val.id == id  && val.qty >1 ? {...val,qty:val.qty-=1} : val
+        val.id == id  && val.quantity >1 ? {...val,quantity:val.quantity-=1} : val
     )
     setFoodQty(decValue)
   }
@@ -144,16 +171,16 @@ const Header = () => {
                                     <>
                                         {/* image */}
                                         <div className="flex justify-center items-center md:grid">
-                                            <img src={val.image} alt="" />
+                                            <img src={val.path} alt="" />
                                         </div>
                                         {/* Detail */}
-                                        <p className='text-base text-center md:text-left'>{val.name}</p>
+                                        <p className='text-base text-center md:text-left'>{val.food_name}</p>
                                        <div className="prize flex flex-col gap-4 mb-5 relative">
                                             <span onClick={()=>handleDelete(val.id)} className='absolute right-2 text-primary text-xl font-extrabold rounded-full h-5 w-5 flex items-center justify-center hover:border hover:bg-primary hover:text-white -top-[100px] md:top-0'><ion-icon name="close-outline"></ion-icon></span>
                                             <p className='text-primary font-lg font-semibold text-center'>₹{val.prize}</p>
                                             <div className="flex justify-evenly items-center">
                                                 <button onClick={()=>handleDec(val.id)} className='bg-primary text-white rounded-full h-6 w-6 flex justify-center items-center hover:font-semibold hover:border-2 hover:bg-white hover:border-primary hover:text-primary'>-</button>
-                                                <p className='text-base font-semibold'>{val.qty}</p>
+                                                <p className='text-base font-semibold'>{val.quantity}</p>
                                                 <button onClick={()=>handleInc(val.id)} className='bg-primary text-white rounded-full h-6 w-6 flex justify-center items-center hover:font-semibold hover:border-2 hover:bg-white hover:border-primary hover:text-primary'>+</button>
                                             </div>
                                        </div>
@@ -181,6 +208,20 @@ const Header = () => {
                                     <p className='font-semibold text-base'>{prize.final}<span className='text-neutral-400'> INR</span></p>
                                 </div>
 
+                                {/* location */}
+
+                                <div className="location relative mt-8">
+                                    <input className='w-full p-2 border text-black rounded-lg border-primary/50 outline-none ps-11 font-light' onChange={setlocation} type="text" id="loc" name="location" value={Flocation}/>
+                                    <div className="input-group absolute left-3 top-2 flex gap-3 items-center text-zinc-400">
+                                        <ion-icon style={{fontSize : "1.5em",fontWeight: "500"}} name="location-outline"></ion-icon>
+                                        <label className={`${Flocation.length > 0 ? "-translate-y-5" : ''} text-sm bg-white px-1 transition duration-300 group-focus-within:-translate-y-5`} htmlFor="loc">Location</label>
+                                    </div>
+                                </div>
+
+                                <div className="submit flex justify-center items-center mt-8">
+                                    <button onClick={submitOrder} className='grow bg-primary/90 hover:bg-primary px-2 py-2 text-white text-base font-serif rounded-md'>Place order</button>
+                                </div>
+
                             </div> : <p className='font-bold flex justify-center items-center h-[50vh]'>No Item</p>}
                         </div>
 
@@ -194,10 +235,10 @@ const Header = () => {
                                     <>
                                         {/* image */}
                                         <div className="flex justify-center items-center">
-                                            <img src={val.image} alt="" />
+                                            <img src={val.path} alt="" />
                                         </div>
                                         {/* Detail */}
-                                        <p className='text-base text-center lg:text-start'>{val.name}</p>
+                                        <p className='text-base text-center lg:text-start'>{val.food_name}</p>
                                         <p className='text-3xl flex justify-center items-center text-primary'>₹{val.prize}</p>
                                     </>
                                 ))}
@@ -221,7 +262,7 @@ const Header = () => {
                 <ion-icon onClick={showMenu} name={`${active == 0 ? 'menu' : 'close-outline'}`}></ion-icon>
                 <ul className={`transition-transform origin-top duration-200 w-full left-0 top-[65px] md:top-20 bg-black gap-4 absolute z-10 pb-4 ${ active == 0 ? 'scale-y-0' : 'scale-y-1'}`}>
                         {menu.map((val)=>(
-                           <li className='text-center pb-2'><Link to={val.path} className={`w-full text-white cursor-pointer my-4 p-3 font-[600] text-sm transition hover:text-primary`}>{val.name}</Link></li>
+                           <li className='text-center pb-2'><Link to={val.path} className={`w-full text-white cursor-pointer my-4 p-3 font-[600] text-sm transition hover:text-primary`}>{val.food_name}</Link></li>
                         ))}
                        <li className='text-center pb-2'><Link to='/signin' className={`w-full text-white cursor-pointer my-4 p-3 font-[600] text-sm transition hover:text-primary`}>Login</Link></li>
                 </ul>

@@ -1,11 +1,32 @@
-import React from 'react'
+import React,{ useEffect, useState } from 'react'
 import chart_1 from '../../assets/Images/dashboard/chart.png'
 import chart_2 from '../../assets/Images/dashboard/chart-2.png'
 import chart_3 from '../../assets/Images/dashboard/chart-3.png'
 import food_1 from '../../assets/Images/dashboard/food-1.jpg'
 import trend_1 from "../../assets/Images/dashboard/trend-1.jpg"
 import Header from './Header'
+import api from '../../components/api'
+
 const Main = () => {
+
+    const [order,setOrder] = useState([])
+    const get_order = async ()=>{
+        try{
+           const value = await api.get("/order/getorder")
+           setOrder(value.data['data'])
+        } catch(err){
+            console.log(err.message)
+        }
+    }
+
+    useEffect(()=>{
+        get_order()
+    },[])
+
+    useEffect(() => {
+        console.log(order)
+    }, [order]);
+
   return (
     <div>
         <Header title={"Dashboard"}/>
