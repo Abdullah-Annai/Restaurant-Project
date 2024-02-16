@@ -2,8 +2,9 @@ import React, { useState } from 'react'
 import { Link , useNavigate } from 'react-router-dom'
 import { LuChefHat } from 'react-icons/lu'
 import api from './api'
-import { toast } from 'react-toastify'
-
+import { toast, ToastContainer } from 'react-toastify'
+import { FaSpinner } from 'react-icons/fa'
+import 'react-toastify/dist/ReactToastify.css'
 const Login = () => {
 
   const navigator = useNavigate()
@@ -13,25 +14,28 @@ const Login = () => {
         "password": ''
   })
 
+  const [login,setLogin] = useState(false)
+
   const handleLogin = (e)=>{
     setFormData({...formData,[e.target.name]:e.target.value})
   }
 
   const handleSubmit = async (e)=>{
     e.preventDefault()
+    setLogin(true)
     try{
       let req = await api.post("/login",formData)
       if(req.status == 202){
-        console.log(req.status)
-        console.log(req.data)
         localStorage.setItem("token",req.data['token'])
         return navigator("/menu")
       } else{
-        toast("Wrong username or password")
+        toast.error("Wrong username or password")
         console.log("wrong username or password")
+        setLogin(false)
       }
     } catch(err){
       console.error(err.message)
+      setLogin(false)
     }
   }
 
@@ -39,6 +43,7 @@ const Login = () => {
   return (
     <div className='sm:pb-20 md:min-h-screen w-full bg-zinc-200 pb-10'>
         <div className="max-w-5xl mx-auto flex flex-col-reverse md:flex-row md:justify-between md:gap-16">
+        <ToastContainer />
             <form onSubmit={handleSubmit} className='mt-14 mx-auto bg-white h-full w-full md:w-1/2 px-10 py-10 shadow-lg shadow-zinc-300 animate__animated animate__fadeInUp transition-all' >
                 <div className="relative mb-8 group">
                 <input onChange={handleLogin} className='w-full p-2 border text-black rounded-lg border-primary/50 outline-none ps-11 font-light' id="username" type="text" name='username' value={formData.username} required/>
@@ -55,7 +60,7 @@ const Login = () => {
                 <label className={`${formData.password.length > 0 ? "-translate-y-5" : ''} text-sm bg-white px-1 transition duration-300 group-focus-within:-translate-y-5`} htmlFor='pass'>Password</label>
               </div>
             </div>
-            <button className='text-center text-white bg-primary/95 hover:bg-primary px-4 py-2 rounded-lg w-full mb-5'>Login</button>
+            <button disabled={login} className='text-center text-white bg-primary/95 hover:bg-primary px-4 py-2 rounded-lg w-full mb-5'>{login == false ? 'Login' : <span className='flex justify-center items-center gap-3'><FaSpinner className='spinner animate-spin' /> Logging in ...</span>}</button>
             <p className='text-zinc-800 font-extralight'>Don't have an account? <Link className='text-primary' to="/signin">Sign up</Link></p>
             <div className="flex justify-between mt-3">
                 <div className="left">

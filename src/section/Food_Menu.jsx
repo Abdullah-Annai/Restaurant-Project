@@ -2,6 +2,11 @@ import React from 'react'
 import Menu from '../components/Menu'
 const Menus = () => {
 
+  if(window.location.href.includes("table")){
+    const table = window.location.href.split("=")[1]
+    sessionStorage.setItem("table",table)
+  }
+
   return (
     <div className='md:min-h-screen w-full mt-5 pb-10'>
       <p className='text-center text-primary text-base font-serif pb-5'>Menu Book</p>

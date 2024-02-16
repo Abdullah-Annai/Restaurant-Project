@@ -10,6 +10,9 @@ import BookTable from "./section/BookTable";
 import { FoodProvider } from "./components/FoodContext";
 import Preloader from "./components/Preloader";
 import Dashboard from "./components/Dashboard";
+import Track from './components/Track_order'
+import Qrcode from './components/Qrcode'
+
 function App() {
 
   const [loader,setLoader] = useState(0)
@@ -35,6 +38,8 @@ function App() {
               <Route path="/login" element={<Login />}></Route>
               <Route path="/menu" element={<Menu />}></Route>
               <Route path="/bookt" element={<BookTable />}></Route>
+              <Route path="/trackid" element={<Track />}></Route>
+              <Route path="/generateqr" element={<Qrcode />}></Route>
           </Routes>
         </FoodProvider>
         <Routes>

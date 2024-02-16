@@ -3,6 +3,9 @@ import logo from '../assets/Images/logo.svg'
 import { Link, useNavigate } from 'react-router-dom'
 import { FoodContext } from './FoodContext'
 import { useClickAway } from "@uidotdev/usehooks";
+import { toast,ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+import {FaSpinner} from 'react-icons/fa'
 import api from './api'
 
 const Header = () => {
@@ -18,6 +21,8 @@ const Header = () => {
   const [showCart,setShowCart] = useState(0)
 
   const [showHeart,setHeart] = useState(0)
+
+  const [placed,setPlaced] = useState(false)
 
   const handleOutCart = useClickAway(()=>{
     setShowCart(0)
@@ -47,18 +52,24 @@ const Header = () => {
   const navigator = useNavigate()
 
   const submitOrder = ()=>{
+    setPlaced(true)
     if(localStorage.getItem("token") == null){
+        toast.error('Login to place order')
         return navigator("/login")
     } else{
         foodQty.map(async (val)=>{
             try{
                 val['location'] = Flocation
                 val['token'] = localStorage.getItem("token")
+                val['table'] = sessionStorage.getItem("table")
                 await api.post("/order/item",val)
+                toast.success('Order Placed')
                 setFoodQty([])
                 delFood([])
             } catch(err){
                 console.log(err.messages)
+                toast.error(err.message)
+                setPlaced(false)
             }
         })
     }
@@ -129,6 +140,10 @@ const Header = () => {
         path : "/bookt"
     },
     {
+        name : 'Orders',
+        path : "/trackid"
+    },
+    {
         name : 'Contact',
         path : "#"
     }]
@@ -165,6 +180,7 @@ const Header = () => {
 
                         {/* Food Cart */}
                         <div ref={handleOutCart} className={`absolute bg-white/50 backdrop-blur-md z-10 border-l-2 border-primary/70 -left-[200px] lg:-left-9 transition-all origin-top duration-300 ${showCart == 0 ? "scale-y-0" : "scale-y-1"} top-14 min-h-[80vh] h-auto w-[350px] p-5 pb-8`}>
+                        <ToastContainer />
                             <p className='font-serif text-center text-stone-700 font-semibold border-b-2 border-zinc-200 pb-3'>Cart</p>
                             <div className="grid lg:grid-cols-3 mt-3">
                                 {foodQty.map((val)=>(
@@ -210,8 +226,8 @@ const Header = () => {
 
                                 {/* location */}
 
-                                <div className="location relative mt-8">
-                                    <input className='w-full p-2 border text-black rounded-lg border-primary/50 outline-none ps-11 font-light' onChange={setlocation} type="text" id="loc" name="location" value={Flocation}/>
+                                <div className={`location relative mt-8 ${sessionStorage.getItem("table") ? 'invisible' : 'visible' }`}>
+                                    <input className='w-full p-2 border text-black rounded-lg border-primary/50 outline-none ps-11 font-light' onChange={setlocation} type="text" id="loc" name="location" required value={Flocation}/>
                                     <div className="input-group absolute left-3 top-2 flex gap-3 items-center text-zinc-400">
                                         <ion-icon style={{fontSize : "1.5em",fontWeight: "500"}} name="location-outline"></ion-icon>
                                         <label className={`${Flocation.length > 0 ? "-translate-y-5" : ''} text-sm bg-white px-1 transition duration-300 group-focus-within:-translate-y-5`} htmlFor="loc">Location</label>
@@ -219,7 +235,7 @@ const Header = () => {
                                 </div>
 
                                 <div className="submit flex justify-center items-center mt-8">
-                                    <button onClick={submitOrder} className='grow bg-primary/90 hover:bg-primary px-2 py-2 text-white text-base font-serif rounded-md'>Place order</button>
+                                    <button onClick={Flocation == "" ? ()=> toast.error('Enter Location') : submitOrder} className='grow bg-primary/90 hover:bg-primary px-2 py-2 text-white text-base font-serif rounded-md'>{placed == false ? 'Place order' : <span className='flex justify-center items-center gap-3'> <FaSpinner className="spinner animate-spin" /> ordering... </span> }</button>
                                 </div>
 
                             </div> : <p className='font-bold flex justify-center items-center h-[50vh]'>No Item</p>}
@@ -262,7 +278,7 @@ const Header = () => {
                 <ion-icon onClick={showMenu} name={`${active == 0 ? 'menu' : 'close-outline'}`}></ion-icon>
                 <ul className={`transition-transform origin-top duration-200 w-full left-0 top-[65px] md:top-20 bg-black gap-4 absolute z-10 pb-4 ${ active == 0 ? 'scale-y-0' : 'scale-y-1'}`}>
                         {menu.map((val)=>(
-                           <li className='text-center pb-2'><Link to={val.path} className={`w-full text-white cursor-pointer my-4 p-3 font-[600] text-sm transition hover:text-primary`}>{val.food_name}</Link></li>
+                           <li className='text-center pb-2 text-white'><Link to={val.path} className={`w-full text-white cursor-pointer my-4 p-3 font-[600] text-sm transition hover:text-primary`}>{val.name}</Link></li>
                         ))}
                        <li className='text-center pb-2'><Link to='/signin' className={`w-full text-white cursor-pointer my-4 p-3 font-[600] text-sm transition hover:text-primary`}>Login</Link></li>
                 </ul>

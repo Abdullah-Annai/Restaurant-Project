@@ -4,6 +4,8 @@ import Main from '../section/dashboard/Main'
 import Order from '../section/dashboard/Order'
 import Review from "../section/dashboard/Review"
 import Analytics from '../section/dashboard/Analytics'
+import Forecast from './Forecast'
+import Staff from '../section/dashboard/Staff'
 import { Routes,Route,Link } from 'react-router-dom'
 
 const Dashboard = () => {
@@ -33,7 +35,9 @@ const Dashboard = () => {
                     <Link to="/admin" onClick={()=>setActive(0)} className={`flex items-center gap-3 py-4 ps-5 ms-5 transition-all ${sidebar == 0 ? "active" : "hover:text-white"}`}><ion-icon name="grid-outline"></ion-icon>Dashboard</Link>
                     <Link to="/admin/order" onClick={()=>setActive(1)} className={`flex items-center gap-3 py-4 ps-5 ms-5 transition-all ${sidebar == 1 ? "active" : "hover:text-white"}`}><ion-icon name="create-outline"></ion-icon>Order List</Link>
                     <Link to="/admin/review" onClick={()=>setActive(2)} className={`flex items-center gap-3 py-4 ps-5 ms-5 transition-all ${sidebar == 2 ? "active" : "hover:text-white"}`}><ion-icon name="people-outline"></ion-icon>Review</Link>
-                    <Link to="/admin/analytics" onClick={()=>setActive(3)} className={`flex items-center gap-3 py-4 ps-5 ms-5 transition-all ${sidebar == 3 ? "active" : "hover:text-white"}`}><ion-icon name="analytics-outline"></ion-icon>Analytics</Link>
+                    <Link to="/admin/analytics" onClick={()=>setActive(3)} className={`flex items-center gap-3 py-4 ps-5 ms-5 transition-all ${sidebar == 3 ? "active" : "hover:text-white"}`}><ion-icon name="bar-chart-outline"></ion-icon>Analytics</Link>
+                    <Link to="/admin/demand" onClick={()=>setActive(4)} className={`flex items-center gap-3 py-4 ps-5 ms-5 transition-all ${sidebar == 4 ? "active" : "hover:text-white"}`}><ion-icon name="analytics-outline"></ion-icon>Forecast</Link>
+                    <Link to="/admin/staff" onClick={()=>setActive(5)} className={`flex items-center gap-3 py-4 ps-5 ms-5 transition-all ${sidebar == 5 ? "active" : "hover:text-white"}`}><ion-icon name="man-outline"></ion-icon>Add Staff</Link>
                 </ul>
             </div>
             <div className="dashboard bg-white px-5 py-10 h-screen overflow-auto">
@@ -42,6 +46,8 @@ const Dashboard = () => {
                     <Route path='/order' element={<Order /> }></Route>
                     <Route path='/review' element={ <Review /> }></Route>
                     <Route path='/analytics' element={ <Analytics /> }></Route>
+                    <Route path="/demand" element={<Forecast />}></Route>
+                    <Route path='/staff' element={<Staff/>}></Route>
                 </Routes>
             </div>
         </main>

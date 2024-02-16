@@ -1,7 +1,29 @@
-import React from 'react';
+import React,{ useEffect,useState } from 'react';
 import Header from './Header';
+import api from '../../components/api'
+
 
 const Order = () => {
+
+  const [order,setOrder] = useState([])
+
+  const get_order = async ()=>{
+    try{
+      let value = await api.get('/order/getorder')
+      setOrder(value.data['data'])
+    } catch(err){
+      console.log(err.message)
+    }
+  }
+
+  useEffect(()=>{
+    get_order()
+  },[])
+
+  useEffect(()=>{
+    console.log(order)
+  },[order])
+
   return (
     <div className='h-screen w-full'>
       <Header title={"Order List"} />
@@ -18,14 +40,16 @@ const Order = () => {
             </tr>
           </thead>
           <tbody>
-            <tr className='text-center bg-zinc-100 text-zinc-400'>
-              <td className='py-5'>#5553311</td>
-              <td className='py-5'>26 March 2024</td>
-              <td className='py-5'>Mohamed Sameer</td>
-              <td className='py-5'>Valngaiman Avoor thriruvarur district</td>
-              <td className='py-5'>₹126</td>
-              <td className='py-5'><span className='uppercase text-sm text-orange-400 p-2 rounded bg-orange-100'>pending</span></td>
+            {Array.isArray(order) && order.length > 0 ? order.map((val)=>(
+              <tr className='text-center bg-zinc-100 text-zinc-400'>
+              <td className='py-5'>#{val.orderId}</td>
+              <td className='py-5'>{val.date.split("T")[0].split("-").reverse().join("-")}</td>
+              <td className='py-5'>{val.username}</td>
+              <td className='py-5'>{val.table != 'External' ? val.table : val.location }</td>
+              <td className='py-5'>₹{val.prize}</td>
+              <td className='py-5'><span className='uppercase text-sm text-orange-400 p-2 rounded bg-orange-100'>{val.status}</span></td>
             </tr>
+            )) : "Loading..."}
             <tr className='text-center'>
               <td className='py-5'>#5553311</td>
               <td className='py-5'>26 March 2024</td>
